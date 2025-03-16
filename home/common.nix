@@ -60,6 +60,10 @@
     '';
   };
 
+  # ls replacement
+  programs.eza.enable = true;
+  programs.eza.enableZshIntegration = true;
+
   programs.git = {
     enable = true;
     aliases = {
