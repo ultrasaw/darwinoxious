@@ -21,4 +21,10 @@ _:
 
   # Browsers
   "google-chrome"
+
+  # Screenshot
+  "flameshot"
+
+  # Productivity
+  "obsidian"
 ]
