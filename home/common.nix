@@ -48,6 +48,10 @@
     };
 
     initExtra = ''
+      # https://github.com/alacritty/alacritty/issues/1408#issuecomment-467970836
+      bindkey "^[[1;3C" forward-word
+      bindkey "^[[1;3D" backward-word
+
       # Environment variables
       export do="--dry-run=client -o yaml"
       export now="--force --grace-period 0"
