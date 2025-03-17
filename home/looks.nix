@@ -9,7 +9,8 @@
       
       # # Config directories
       ".config/alacritty".source = ../dotfiles/.config/alacritty;
-      # ".config/starship.toml".source = ../dotfiles/.config/starship/starship.toml;
+      ".config/helix".source = ../dotfiles/.config/helix;
+      ".config/starship.toml".source = ../dotfiles/.config/starship/starship.toml;
       # ".config/rstudio/themes".source = ../dotfiles/.config/rstudio/themes;
       # ".config/tmux/tmux.conf".source = ../../dotfiles/.config/tmux/tmux.conf;
     };

@@ -73,6 +73,18 @@
     };
   };
 
+  # a 'post-modern' text editor
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  # a modern tmux
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = false;
+  };
+
   # Define user environment packages
   home.packages = with pkgs; [
     htop
