@@ -94,7 +94,7 @@
   home.packages = with pkgs; [
     htop
     # alacritty
-    tmux
+    awscli2
     neovim
 
     terraform
