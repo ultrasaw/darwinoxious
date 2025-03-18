@@ -94,7 +94,6 @@
   home.packages = with pkgs; [
     htop
     # alacritty
-    awscli2
     neovim
 
     terraform
@@ -104,7 +103,9 @@
     kubectl
     k9s
 
+    awscli2
     s3cmd
+    aws-sam-cli
 
     openssl
 
