@@ -2,7 +2,8 @@ _:
 
 [
   # Development Tools
-  "homebrew/cask/docker"
+  # "homebrew/cask/docker"
+  "orbstack"
   "claude"
   "ngrok"
   "visual-studio-code"
@@ -27,4 +28,7 @@ _:
 
   # Productivity
   "obsidian"
+
+  # Screen
+  "betterdisplay"
 ]
