@@ -30,5 +30,5 @@ _:
   "obsidian"
 
   # Screen
-  "betterdisplay"
+  # "betterdisplay"
 ]
