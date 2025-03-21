@@ -104,6 +104,7 @@
     k9s
 
     awscli2
+    copilot-cli
     s3cmd
     aws-sam-cli
 
