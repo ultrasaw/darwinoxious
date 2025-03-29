@@ -2,12 +2,33 @@
 // https://www.reddit.com/r/HelixEditor/comments/1hfme77/comment/m2efjvr/
 
 layout {
-    tab name="full" {
+    tab name="one" {
         pane {
             name "shell"
             command "sh"
             args "-c" "bash"
             start_suspended false
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar";
+        }
+    }
+    tab name="helix" {
+        pane split_direction="horizontal"{
+            pane {
+                name "main"
+                command "sh"
+                args "-c" "bash"
+                start_suspended false
+                size "85%"
+            }
+            pane {
+                name "aux"
+                command "sh"
+                args "-c" "bash"
+                start_suspended false
+                size "15%"
+            }
         }
         pane size=1 borderless=true {
             plugin location="zellij:compact-bar";
