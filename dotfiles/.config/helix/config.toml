@@ -1,5 +1,14 @@
 theme = "onedark"
 
+[keys.normal]
+H = ":buffer-previous"
+L = ":buffer-next"
+C-q = ":buffer-close"
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+
 [keys.normal.space]
 "." = "file_picker_in_current_buffer_directory"
 
