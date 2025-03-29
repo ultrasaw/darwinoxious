@@ -1,1 +1,7 @@
 theme = "onedark"
+
+[keys.normal.space]
+"." = "file_picker_in_current_buffer_directory"
+
+[editor.file-picker]
+max-depth = 4
