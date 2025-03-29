@@ -1,0 +1,37 @@
+// copy to  .config/zellij/layouts/yazi.kdl;
+// https://www.reddit.com/r/HelixEditor/comments/1hfme77/comment/m2efjvr/
+
+layout {
+    tab name="full" {
+        pane {
+            name "shell"
+            command "sh"
+            args "-c" "bash"
+            start_suspended false
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar";
+        }
+    }
+    tab name="split" {
+        pane split_direction="vertical" {
+            pane {
+                name "yazi"
+                command "yazi"
+                args "."
+                start_suspended false
+                size "40%"
+            }
+            pane {
+            name "k9s"
+                command "sh"
+                args "-c" "k9s"
+                start_suspended false
+                size "60%"
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar";
+        }
+    }
+}
