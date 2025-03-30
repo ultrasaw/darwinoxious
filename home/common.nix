@@ -90,6 +90,12 @@
     enableZshIntegration = false;
   };
 
+  # a better 'cd'
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # Define user environment packages
   home.packages = with pkgs; [
     htop
