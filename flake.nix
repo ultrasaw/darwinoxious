@@ -64,7 +64,7 @@
           configuration
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
-          ./modules/brew.nix
+          ./modules/homebrew.nix
           ./modules/user.nix
           ./modules/python.nix
         ];

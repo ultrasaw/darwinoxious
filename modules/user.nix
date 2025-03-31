@@ -16,7 +16,7 @@ in
     # Homebrew is *installed* via the flake input nix-homebrew
     enable = true;
     casks = pkgs.callPackage ./casks.nix {};
-    # brews = ;
+    brews = pkgs.callPackage ./brews.nix {};
   };
 
   home-manager = {

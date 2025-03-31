@@ -8,7 +8,6 @@ _:
   "ngrok"
   "visual-studio-code"
   "alacritty"
-  # "tmux" # "zellij"
 
   # System Tools
   "gpg-suite"
