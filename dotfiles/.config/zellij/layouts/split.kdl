@@ -4,14 +4,14 @@ layout {
             pane {
                 name "main"
                 command "sh"
-                args "-c" "bash"
+                args "-c" "zsh"
                 start_suspended false
                 size "85%"
             }
             pane {
                 name "aux"
                 command "sh"
-                args "-c" "bash"
+                args "-c" "zsh"
                 start_suspended false
                 size "15%"
             }
@@ -24,7 +24,7 @@ layout {
         pane {
             name "shell"
             command "sh"
-            args "-c" "bash"
+            args "-c" "zsh"
             start_suspended false
         }
         pane size=1 borderless=true {
