@@ -67,6 +67,7 @@
           ./modules/homebrew.nix
           ./modules/user.nix
           ./modules/python.nix
+          ./modules/go.nix
         ];
       };
     };
