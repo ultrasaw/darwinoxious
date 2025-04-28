@@ -4,5 +4,6 @@
   environment.systemPackages = with pkgs; [
     go
     gopls
+    golangci-lint-langserver
   ];
 }
