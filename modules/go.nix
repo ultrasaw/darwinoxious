@@ -5,5 +5,6 @@
     go
     gopls
     golangci-lint
+    golangci-lint-langserver
   ];
 }
