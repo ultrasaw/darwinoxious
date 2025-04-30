@@ -1,19 +1,20 @@
 layout {
-    tab name="helix" {
-        pane split_direction="horizontal" {
+    tab name="hx" {
+        pane split_direction="vertical" {
             pane {
-                name "main"
-                command "sh"
-                args "-c" "zsh"
+                name "fzf"
+                command "zsh"
+                args "-c" "fzf --bind 'enter:execute(~/.config/zellij/scripts/fzf-hx-open.sh {})'"
                 start_suspended false
-                size "85%"
+                close_on_exit false
+                size "20%"
             }
             pane {
-                name "aux"
-                command "sh"
-                args "-c" "zsh"
+                name "helix"
+                command "hx"
                 start_suspended false
-                size "15%"
+                close_on_exit false
+                size "80%"
             }
         }
         pane size=1 borderless=true {
@@ -26,27 +27,6 @@ layout {
             command "sh"
             args "-c" "zsh"
             start_suspended false
-        }
-        pane size=1 borderless=true {
-            plugin location="zellij:compact-bar";
-        }
-    }
-    tab name="split" {
-        pane split_direction="vertical" {
-            pane {
-                name "yazi"
-                command "yazi"
-                args "."
-                start_suspended false
-                size "40%"
-            }
-            pane {
-            name "k9s"
-                command "sh"
-                args "-c" "k9s"
-                start_suspended false
-                size "60%"
-            }
         }
         pane size=1 borderless=true {
             plugin location="zellij:compact-bar";
