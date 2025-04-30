@@ -8,6 +8,7 @@
     home-manager.enable = true;
     yazi.enable = true; # terminal file manager
     btop.enable = true; # TUI for resource usage monitoring
+    bat.enable = true; # cat with syntax highlighting
   };
 
   programs.zsh = {
@@ -25,6 +26,9 @@
       gc = "git commit";
       gp = "git push";
 
+      # cat
+      cat = "bat --style=numbers --color=always -P"
+
       # Kubernetes
       k = "kubectl";
       kcurl = "k run tmp --restart=Never --rm -i --image=nginx:alpine -- curl -m 5";
@@ -35,6 +39,7 @@
       cr = "cargo run";
       y = "yazi";
       zc = "zellij --layout compact";
+      zs = "zellij --layout split"
     };
 
     history = {
