@@ -30,7 +30,7 @@
       cat = "bat --style=numbers --color=always -P";
 
       # fzf
-      fp = "fzf --preview 'bat --style=numbers --color=always {}'" # file preview
+      fp = "fzf --preview 'bat --style=numbers --color=always {}'"; # file preview
 
       # Kubernetes
       k = "kubectl";
