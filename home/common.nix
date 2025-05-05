@@ -133,6 +133,8 @@
     # alacritty
     neovim
 
+    sd # sed alternative
+
     terraform
 
     unzip
