@@ -27,6 +27,10 @@ C-k = "jump_view_up"
 
 [keys.insert]
 C-n = "normal_mode"
+C-a = "insert_at_line_start"
+C-e = "insert_at_line_end"
+C-b = "move_char_left"
+C-f = "move_char_right"
 
 [keys.normal.space]
 "." = "file_picker_in_current_buffer_directory"
