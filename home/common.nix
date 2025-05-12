@@ -27,7 +27,7 @@
       gp = "git push";
 
       # cat
-      cat = "bat --style=numbers --color=always -P";
+      cat = "bat --style=numbers --color=always -Pp";
 
       # fzf
       fp = "fzf --preview 'bat --style=numbers --color=always {}'"; # file preview
@@ -138,6 +138,7 @@
 
     sd # sed alternative
 
+    terraform-ls
     unstablePkgs.opentofu
     unstablePkgs.terragrunt
 
