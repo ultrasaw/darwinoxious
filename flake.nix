@@ -1,8 +1,10 @@
+# flake.nix
 {
   description = "nix-darwin system flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -24,12 +26,15 @@
     homebrew-cask = {
       url = "github:homebrew/homebrew-cask";
       flake = false;
-    }; 
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager }:
     let
       lib = nixpkgs.lib;
+      targetSystem = "aarch64-darwin";
+      unstablePkgs = nixpkgs-unstable.legacyPackages.${targetSystem};
+
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
@@ -51,16 +56,16 @@
         system.stateVersion = 5;
 
         # The platform the configuration will be used on.
-        nixpkgs.hostPlatform = "aarch64-darwin";
+        nixpkgs.hostPlatform = targetSystem;
       };
     in {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#book-of-doom
       darwinConfigurations."book-of-doom" = nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit inputs homebrew-bundle homebrew-core homebrew-cask;
+          inherit inputs homebrew-bundle homebrew-core homebrew-cask unstablePkgs;
         };
-        modules = [ 
+        modules = [
           configuration
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew

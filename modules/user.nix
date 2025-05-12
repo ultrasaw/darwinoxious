@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, home-manager, ... }:
+{ config, pkgs, lib, inputs, home-manager, unstablePkgs, ... }:
 
 let
   user = "gio";
@@ -21,7 +21,7 @@ in
 
   home-manager = {
     extraSpecialArgs = {
-      inherit inputs;
+      inherit inputs unstablePkgs;
     };
     users = {
       "${user}" = import ./home.nix;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, unstablePkgs, ... }:
 
 {
 
@@ -138,7 +138,8 @@
 
     sd # sed alternative
 
-    terraform
+    unstablePkgs.opentofu
+    unstablePkgs.terragrunt
 
     unzip
 
