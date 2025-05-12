@@ -25,6 +25,9 @@ C-k = "jump_view_up"
 # h = "collapse_selection"
 # A-h = "flip_selections"
 
+[keys.select]
+C-n = "normal_mode"
+
 [keys.insert]
 C-n = "normal_mode"
 C-a = "insert_at_line_start"
