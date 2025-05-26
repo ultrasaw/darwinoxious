@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstablePkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    go
-    gopls
-    golangci-lint
-    golangci-lint-langserver
+    unstablePkgs.go
+    unstablePkgs.gopls
+    unstablePkgs.gotools
+    unstablePkgs.golangci-lint
+    unstablePkgs.golangci-lint-langserver
   ];
 }
