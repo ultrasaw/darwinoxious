@@ -147,7 +147,6 @@
     unstablePkgs.kubectl
     unstablePkgs.k9s
     unstablePkgs.kubernetes-helm
-    unstablePkgs.fluxcd
 
     awscli2
     s3cmd

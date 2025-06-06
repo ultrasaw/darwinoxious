@@ -1,4 +1,4 @@
-{ config, pkgs, nix-darwin, nixpkgs, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, ... }:
+{ config, pkgs, nix-darwin, nixpkgs, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-flux, ... }:
 
 {
   nix-homebrew = {
@@ -16,6 +16,7 @@
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-bundle" = homebrew-bundle;
+      "fluxcd/tap" = homebrew-flux;
     };
 
     # Optional: Enable fully-declarative tap management
