@@ -152,6 +152,7 @@
     s3cmd
     aws-sam-cli
 
+    jq
     openssl
 
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
