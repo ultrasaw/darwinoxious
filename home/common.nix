@@ -152,6 +152,8 @@
     s3cmd
     aws-sam-cli
 
+    google-cloud-sdk
+
     jq
     openssl
 
