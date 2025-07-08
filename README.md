@@ -23,7 +23,7 @@ sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
 
 Build the system
 ```bash
-nix run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch # on 1st build
+nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch # on 1st build
 
 darwin-rebuild switch # all consecutive builds
 
