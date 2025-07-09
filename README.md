@@ -72,6 +72,8 @@ gpg --list-secret-keys --keyid-format=long
 gpg --armor --export KEY_ID
 
 # enable signed commits
+sudo git config --global user.name "Your Name"
+sudo git config --global user.email "email@example.com"
 sudo git config --global user.signingkey KEY_ID
 sudo git config --global commit.gpgsign true
 ```
