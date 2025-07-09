@@ -43,7 +43,7 @@ xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
 SSH
 ```bash
 # save under '~/.ssh/gh_key'
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "email@example.com"
 
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/gh_key
