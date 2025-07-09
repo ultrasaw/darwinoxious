@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, home-manager, unstablePkgs, ... }:
 
 let
-  user = "gio";
+  user = "doom";
 in
 {
   users.users.${user} = {
