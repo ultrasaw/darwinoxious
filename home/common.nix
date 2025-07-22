@@ -158,7 +158,7 @@
     jq
     openssl
 
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
   ];
 
   # fonts.fontconfig.enable = true;

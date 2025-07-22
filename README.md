@@ -25,10 +25,10 @@ sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
 Build the system
 ```bash
 # on 1st build
-nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
+sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
 
 # all consecutive builds
-darwin-rebuild switch
+sudo darwin-rebuild switch
 
 softwareupdate --install-rosetta
 ```
