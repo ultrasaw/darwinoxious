@@ -105,6 +105,7 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    package = unstablePkgs.helix;
   };
 
   # a modern tmux
