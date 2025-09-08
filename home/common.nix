@@ -150,6 +150,7 @@
     unstablePkgs.kubectl
     unstablePkgs.k9s
     unstablePkgs.kubernetes-helm
+    unstablePkgs.minikube
 
     awscli2
     s3cmd
