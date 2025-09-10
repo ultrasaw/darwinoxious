@@ -7,7 +7,7 @@ Install Nix
 curl -sSf -L https://install.lix.systems/lix | sh -s -- install
 ```
 
-Initizliaze Flakes
+Flakes
 ```bash
 sudo mkdir -p /etc/nix-darwin
 sudo chown $(id -nu):$(id -ng) /etc/nix-darwin
