@@ -5,6 +5,7 @@ _:
   # "homebrew/cask/docker"
   "orbstack"
   "claude"
+  "cursor"
   "ngrok"
   "visual-studio-code"
   "alacritty"
