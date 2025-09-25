@@ -19,6 +19,7 @@ _:
 
   # Entertainment Tools
   "vlc"
+  "spotify"
 
   # Browsers
   "google-chrome"
