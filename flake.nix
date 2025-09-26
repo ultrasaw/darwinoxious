@@ -79,6 +79,7 @@
           ./modules/user.nix
           ./modules/python.nix
           ./modules/go.nix
+          ./modules/rust.nix
         ];
       };
     };
