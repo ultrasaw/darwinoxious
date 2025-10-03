@@ -161,6 +161,7 @@
 
     jq
     openssl
+    websocat
 
     nerd-fonts.jetbrains-mono
   ];
