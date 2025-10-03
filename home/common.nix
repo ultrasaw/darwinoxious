@@ -162,6 +162,7 @@
     jq
     openssl
     websocat
+    hyperfine
 
     nerd-fonts.jetbrains-mono
   ];
