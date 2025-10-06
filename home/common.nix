@@ -21,6 +21,8 @@
       ll = "ls -l";
       vim = "nvim";
 
+      timeout = "gtimeout";
+
       # Git Aliases
       ga = "git add";
       gc = "git commit";
