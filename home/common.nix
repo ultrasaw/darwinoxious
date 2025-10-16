@@ -154,6 +154,7 @@
     unstablePkgs.kubernetes-helm
     unstablePkgs.minikube
     unstablePkgs.kind
+    unstablePkgs.fluxcd
 
     awscli2
     s3cmd

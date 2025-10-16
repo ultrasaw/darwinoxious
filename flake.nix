@@ -27,13 +27,9 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    homebrew-flux = {
-      url = "github:fluxcd/homebrew-tap";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-flux, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager }:
     let
       lib = nixpkgs.lib;
       targetSystem = "aarch64-darwin";
@@ -69,7 +65,7 @@
       # $ darwin-rebuild build --flake .#book-of-doom
       darwinConfigurations."book-of-doom" = nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit inputs homebrew-bundle homebrew-core homebrew-cask homebrew-flux unstablePkgs;
+          inherit inputs homebrew-bundle homebrew-core homebrew-cask unstablePkgs;
         };
         modules = [
           configuration

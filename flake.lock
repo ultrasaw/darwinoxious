@@ -86,22 +86,6 @@
         "type": "github"
       }
     },
-    "homebrew-flux": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759947641,
-        "narHash": "sha256-VXa/hWeWtuO6ngDcFbwY6qDzG4vmrMTGWxousiaI7Lc=",
-        "owner": "fluxcd",
-        "repo": "homebrew-tap",
-        "rev": "2de37c5fc424451877c087939d10468c6b57a854",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fluxcd",
-        "repo": "homebrew-tap",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -179,7 +163,6 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
-        "homebrew-flux": "homebrew-flux",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",

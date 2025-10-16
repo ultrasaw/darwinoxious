@@ -17,9 +17,6 @@ in
     enable = true;
     casks = pkgs.callPackage ./casks.nix {};
     brews = pkgs.callPackage ./brews.nix {};
-    taps = [
-      "fluxcd/tap"
-    ];
   };
 
   home-manager = {
