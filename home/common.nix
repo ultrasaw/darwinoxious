@@ -149,6 +149,8 @@
     unzip
 
     unstablePkgs.gemini-cli
+    unstablePkgs.claude-code
+
     unstablePkgs.kubectl
     unstablePkgs.k9s
     unstablePkgs.kubernetes-helm

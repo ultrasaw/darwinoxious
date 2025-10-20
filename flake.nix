@@ -33,7 +33,10 @@
     let
       lib = nixpkgs.lib;
       targetSystem = "aarch64-darwin";
-      unstablePkgs = nixpkgs-unstable.legacyPackages.${targetSystem};
+      unstablePkgs = import nixpkgs-unstable {
+        system = targetSystem;
+        config.allowUnfree = true;
+      };
 
       configuration = { pkgs, ... }: {
         system.primaryUser = "doom";
@@ -59,6 +62,7 @@
 
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = targetSystem;
+        nixpkgs.config.allowUnfree = true;
       };
     in {
       # Build darwin flake using:
