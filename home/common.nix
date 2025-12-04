@@ -142,6 +142,8 @@
 
     sd # sed alternative
 
+    firebase-tools
+
     terraform-ls
     unstablePkgs.opentofu
     unstablePkgs.terragrunt
