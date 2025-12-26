@@ -26,7 +26,7 @@
       # Git Aliases
       ga = "git add";
       gc = "git commit";
-      gp = "git push";
+      gp = "git push --set-upstream origin HEAD";
       gx = "git checkout";
 
       # cat
@@ -136,6 +136,9 @@
 
   # Define user environment packages
   home.packages = with pkgs; [
+    # cmake
+    # clang-tools
+
     htop
     # alacritty
     neovim
