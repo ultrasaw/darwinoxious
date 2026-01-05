@@ -3,8 +3,6 @@
 let
   pythonPackages = with pkgs.python3Packages; [
     numpy
-    yq
-    jq
   ];
 
   pythonEnv = pkgs.python3.withPackages (ps: pythonPackages);
