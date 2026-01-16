@@ -76,8 +76,8 @@ title = "🥱"
 option_as_alt = "Both"
 
 [window.dimensions]
-columns = 130
-lines = 28
+columns = 175
+lines = 40
 
 [window.padding]
 x = 2

@@ -1,34 +1,46 @@
 layout {
-    tab name="hx" {
-        pane split_direction="vertical" {
-            pane {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar";
+        }
+        children
+    }
+
+    // Stacked layout - only one pane visible at a time
+    // yazi on top (visible first), helix underneath
+    tab name="hx" focus=true {
+        pane stacked=true {
+            pane focus=true {
                 name "yazi"
                 command "yazi"
                 start_suspended false
                 close_on_exit false
-                size "20%"
             }
             pane {
                 name "helix"
                 command "hx"
                 start_suspended false
                 close_on_exit false
-                size "80%"
             }
         }
-        pane size=1 borderless=true {
-            plugin location="zellij:compact-bar";
-        }
     }
-    tab name="one" {
+
+    tab name="sh" {
         pane {
             name "shell"
             command "sh"
             args "-c" "zsh"
             start_suspended false
         }
-        pane size=1 borderless=true {
-            plugin location="zellij:compact-bar";
+    }
+
+    // Swap to side-by-side when editing
+    swap_tiled_layout name="joint" min_panes=2 {
+        tab {
+            pane split_direction="vertical" {
+                pane size="20%"
+                pane size="80%"
+            }
         }
     }
 }

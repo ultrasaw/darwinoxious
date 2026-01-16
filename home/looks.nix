@@ -24,6 +24,10 @@
         text       = builtins.readFile ../dotfiles/.config/zellij/scripts/yazi-hx-open.sh;
         executable = true;
       };
+      ".config/zellij/scripts/toggle-preview.sh" = {
+        text       = builtins.readFile ../dotfiles/.config/zellij/scripts/toggle-preview.sh;
+        executable = true;
+      };
     };
   };
 }
