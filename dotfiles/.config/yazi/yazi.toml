@@ -1,0 +1,22 @@
+[mgr]
+ratio = [0, 1, 0]
+show_hidden = true
+sort_by = "natural"
+sort_dir_first = true
+
+[opener]
+helix = [
+  { run = '$HOME/.config/zellij/scripts/yazi-hx-open.sh "$@"', block = true, for = "unix" },
+]
+
+[open]
+rules = [
+  { name = "*/", use = "folder" },
+  { mime = "text/*", use = "helix" },
+  { mime = "application/json", use = "helix" },
+  { mime = "application/javascript", use = "helix" },
+  { mime = "application/x-sh", use = "helix" },
+  { mime = "application/toml", use = "helix" },
+  { mime = "application/*", use = "helix" },
+  { name = "*", use = "helix" },
+]

@@ -13,10 +13,15 @@
       ".config/starship.toml".source = ../dotfiles/.config/starship/starship.toml;
       # ".config/rstudio/themes".source = ../dotfiles/.config/rstudio/themes;
       ".config/zellij".source = ../dotfiles/.config/zellij;
+      ".config/yazi".source = ../dotfiles/.config/yazi;
 
-      # still have to do 'chmod +x dotfiles/.config/zellij/scripts/fzf-hx-open.sh'
+      # Executable scripts need explicit permissions
       ".config/zellij/scripts/fzf-hx-open.sh" = {
-        text      = builtins.readFile ../dotfiles/.config/zellij/scripts/fzf-hx-open.sh;
+        text       = builtins.readFile ../dotfiles/.config/zellij/scripts/fzf-hx-open.sh;
+        executable = true;
+      };
+      ".config/zellij/scripts/yazi-hx-open.sh" = {
+        text       = builtins.readFile ../dotfiles/.config/zellij/scripts/yazi-hx-open.sh;
         executable = true;
       };
     };
