@@ -6,8 +6,7 @@ layout {
         children
     }
 
-    // Stacked layout - only one pane visible at a time
-    // yazi on top (visible first), helix underneath
+    // Stacked layout - yazi full screen, helix full screen (no side-by-side)
     tab name="hx" focus=true {
         pane stacked=true {
             pane focus=true {
@@ -31,16 +30,6 @@ layout {
             command "sh"
             args "-c" "zsh"
             start_suspended false
-        }
-    }
-
-    // Swap to side-by-side when editing
-    swap_tiled_layout name="joint" min_panes=2 {
-        tab {
-            pane split_direction="vertical" {
-                pane size="20%"
-                pane size="80%"
-            }
         }
     }
 }

@@ -93,6 +93,32 @@
         rg --files-with-matches --no-messages --hidden "$1" --glob "!.git/*" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}" | xargs hx
       }
 
+      # ripgrep + fzf -> replace in ALL filtered files (uses sd)
+      # Usage: fr [-l] <search> <replace>
+      #   -l  literal mode (no regex, exact string match)
+      # Filter with fzf, press Enter to replace in ALL visible files
+      fr() {
+        local literal=""
+        if [ "$1" = "-l" ]; then
+          literal="-F"
+          shift
+        fi
+        if [ "$#" -lt 2 ]; then echo "Usage: fr [-l] <search> <replace>"; return 1; fi
+        local search="$1"
+        local replace="$2"
+        local rg_flag=""
+        [ -n "$literal" ] && rg_flag="-F"
+        local files
+        files=$(rg --files-with-matches --no-messages --hidden $rg_flag "$search" --glob "!.git/*" | \
+          fzf -m --preview "rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 $rg_flag '$search' {}" \
+          --bind 'enter:select-all+accept')
+        if [ -n "$files" ]; then
+          echo "$files" | xargs sd $literal "$search" "$replace"
+          echo "Replaced '$search' with '$replace' in:"
+          echo "$files"
+        fi
+      }
+
       # Environment variables
       export do="--dry-run=client -o yaml"
       export now="--force --grace-period 0"

@@ -49,7 +49,7 @@
 
     # See: https://sw.kovidgoyal.net/kitty/actions/
     keybindings = {
-      "alt+t" = "new_tab_with_cwd";
+      "cmd+t" = "new_tab_with_cwd";
       "alt+shift+]" = "next_tab";
       "alt+shift+[" = "previous_tab";
     };
