@@ -19,8 +19,8 @@
     settings = {
       # --- Window Size ---
       remember_window_size = false;
-      initial_window_width = "140c";  # 140 columns (wider)
-      initial_window_height = "42c";  # 42 rows (slightly taller)
+      initial_window_width = "170c";
+      initial_window_height = "42c";
 
       # --- Appearance ---
       background_opacity = "1.0";
