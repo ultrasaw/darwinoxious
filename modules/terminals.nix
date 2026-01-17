@@ -5,12 +5,13 @@
 {
   # GUI apps in environment.systemPackages get linked to /Applications/Nix Apps/
   environment.systemPackages = [
-    pkgs.alacritty
+    # pkgs.alacritty
     pkgs.kitty
   ];
 
   # Use mkalias to create real macOS aliases instead of symlinks
   # This allows Spotlight to index the apps properly
+  # After removing the systemPackages in this module, run 'sudo nix-collect-garbage -d'
   system.activationScripts.applications.text = let
     env = pkgs.buildEnv {
       name = "system-applications";
