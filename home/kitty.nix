@@ -35,6 +35,7 @@
       enable_audio_bell = false;
       confirm_os_window_close = 0;
       macos_option_as_alt = "both";
+      macos_quit_when_last_window_closed = true;
 
       # --- Tab Bar ---
       shell_integration = "no-title"; # Let zsh set_term_title() control the title
