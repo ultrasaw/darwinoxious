@@ -8,9 +8,8 @@ sort_dir_first = true
 max_width = 1920
 max_height = 1080
 image_quality = 90
-# Use ueberzugpp for proper image rendering in Alacritty
-ueberzug_scale = 1
-ueberzug_offset = [0, 0, 0, 0]
+# Kitty uses native graphics protocol (auto-detected)
+# ueberzug settings only needed for Alacritty
 
 [opener]
 helix = [
