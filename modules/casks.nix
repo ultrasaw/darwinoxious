@@ -7,9 +7,8 @@ _:
   "claude"
   "cursor"
   "visual-studio-code"
-  "zed"
+  # "zed"
   "ngrok"
-  # "alacritty"
 
   # System Tools
   "gpg-suite"
