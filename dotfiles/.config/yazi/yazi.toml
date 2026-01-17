@@ -8,8 +8,8 @@ sort_dir_first = true
 max_width = 1920
 max_height = 1080
 image_quality = 90
-# Kitty uses native graphics protocol (auto-detected)
-# ueberzug settings only needed for Alacritty
+# macOS: ueberzugpp not available (Linux-only, needs X11/Wayland)
+# Use Kitty for yazi image previews, Alacritty falls back to chafa (low quality)
 
 [opener]
 helix = [
