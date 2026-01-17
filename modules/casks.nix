@@ -6,8 +6,9 @@ _:
   "orbstack"
   "claude"
   "cursor"
-  "ngrok"
   "visual-studio-code"
+  "zed"
+  "ngrok"
   # "alacritty"
 
   # System Tools

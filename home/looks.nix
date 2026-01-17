@@ -14,6 +14,7 @@
       # ".config/rstudio/themes".source = ../dotfiles/.config/rstudio/themes;
       ".config/zellij".source = ../dotfiles/.config/zellij;
       ".config/yazi".source = ../dotfiles/.config/yazi;
+      ".config/yazi-minimal".source = ../dotfiles/.config/yazi-minimal;
 
       # Executable scripts need explicit permissions
       ".config/zellij/scripts/fzf-hx-open.sh" = {

@@ -21,7 +21,6 @@ if [ -n "$ZELLIJ" ]; then
   ESCAPED_PATH=$(printf '%s' "$FILE_PATH" | sed 's/\\/\\\\/g; s/"/\\"/g')
   
   zellij action focus-next-pane
-  sleep 0.05
   zellij action write 27
   zellij action write-chars ":open \"$ESCAPED_PATH\""
   zellij action write 13

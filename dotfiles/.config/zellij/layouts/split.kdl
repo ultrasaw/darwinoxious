@@ -6,16 +6,17 @@ layout {
         children
     }
 
-    // Stacked layout - yazi full screen, helix full screen (no side-by-side)
+    // Side-by-side: yazi (no preview) on left, helix on right
     tab name="hx" focus=true {
-        pane stacked=true {
-            pane focus=true {
+        pane split_direction="vertical" {
+            pane size="20%" focus=true {
                 name "yazi"
-                command "yazi"
+                command "sh"
+                args "-c" "YAZI_CONFIG_HOME=$HOME/.config/yazi-minimal yazi"
                 start_suspended false
                 close_on_exit false
             }
-            pane {
+            pane size="80%" {
                 name "helix"
                 command "hx"
                 start_suspended false
@@ -24,12 +25,4 @@ layout {
         }
     }
 
-    tab name="sh" {
-        pane {
-            name "shell"
-            command "sh"
-            args "-c" "zsh"
-            start_suspended false
-        }
-    }
 }
