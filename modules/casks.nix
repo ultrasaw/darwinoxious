@@ -8,7 +8,7 @@ _:
   "cursor"
   "ngrok"
   "visual-studio-code"
-  "alacritty"
+  # "alacritty"
 
   # System Tools
   "gpg-suite"
