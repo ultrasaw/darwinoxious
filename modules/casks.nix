@@ -7,7 +7,6 @@ _:
   "claude"
   "cursor"
   "visual-studio-code"
-  # "zed"
   "ngrok"
 
   # System Tools
