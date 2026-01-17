@@ -8,22 +8,47 @@ sort_dir_first = true
 max_width = 1920
 max_height = 1080
 image_quality = 90
-# macOS: ueberzugpp not available (Linux-only, needs X11/Wayland)
-# Use Kitty for yazi image previews, Alacritty falls back to chafa (low quality)
+# ueberzugpp available via tap jstkdng/programs for Alacritty
+ueberzug_scale = 1
+ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
+# Text files -> helix (via zellij pane or direct)
 helix = [
   { run = '$HOME/.config/zellij/scripts/yazi-hx-open.sh "$@"', block = true, for = "unix" },
+]
+# Non-text files -> system default (Preview.app, etc.)
+default = [
+  { run = 'open "$@"', desc = "Open with system default", for = "macos" },
 ]
 
 [open]
 rules = [
+  # Folders
   { name = "*/", use = "folder" },
+
+  # Images -> system default (Preview.app)
+  { mime = "image/*", use = "default" },
+
+  # PDFs -> system default (Preview.app)
+  { mime = "application/pdf", use = "default" },
+
+  # Videos/Audio -> system default
+  { mime = "video/*", use = "default" },
+  { mime = "audio/*", use = "default" },
+
+  # Text files -> helix
   { mime = "text/*", use = "helix" },
   { mime = "application/json", use = "helix" },
   { mime = "application/javascript", use = "helix" },
   { mime = "application/x-sh", use = "helix" },
   { mime = "application/toml", use = "helix" },
-  { mime = "application/*", use = "helix" },
+  { mime = "application/xml", use = "helix" },
+  { mime = "application/x-yaml", use = "helix" },
+
+  # Other application types -> system default
+  { mime = "application/*", use = "default" },
+
+  # Fallback: unknown files -> helix (probably text)
   { name = "*", use = "helix" },
 ]

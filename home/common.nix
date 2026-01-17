@@ -258,6 +258,7 @@
     htop
     # alacritty
     neovim
+    ueberzugpp # image previews for yazi in terminals without native graphics
 
     sd # sed alternative
 
