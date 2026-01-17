@@ -43,9 +43,9 @@
 
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
-        environment.systemPackages =
-          [ pkgs.vim
-          ];
+        environment.systemPackages = [
+          pkgs.vim
+        ];
 
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
@@ -77,6 +77,7 @@
           nix-homebrew.darwinModules.nix-homebrew
           ./modules/homebrew.nix
           ./modules/user.nix
+          ./modules/terminals.nix
           ./modules/python.nix
           ./modules/go.nix
           ./modules/rust.nix

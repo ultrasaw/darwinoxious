@@ -148,107 +148,8 @@
     enable = true;
   };
 
-  programs.kitty = {
-    enable = true;
-    shellIntegration.enableZshIntegration = false;
-    themeFile = "Adwaita_dark";  # Changed from 'theme' to 'themeFile'
-
-    font = {
-      # Nerd Fonts installed via nix use "Mono" suffix for monospace variant
-      name = "JetBrainsMono Nerd Font Mono";
-      size = 15;
-    };
-
-    # See: https://sw.kovidgoyal.net/kitty/conf/
-    settings = {
-
-      # --- Appearance ---
-      background_opacity = "1.0"; # Slightly transparent (0.0 to 1.0)
-      # macos_titlebar_color = "background"; # macOS specific: Blend title bar
-      # hide_window_decorations = "titlebar-only"; # Commented out to keep titlebar for dragging
-      window_padding_width = 10; # Padding around window edges
-      cursor_shape = "Block"; # Beam, Block, Underline
-      cursor_blink_interval = 0; # Disable cursor blinking
-
-      # --- Behavior ---
-      scrollback_lines = 10000; # Increase scrollback history
-      copy_on_select = true; # Copy when selecting text
-      strip_trailing_spaces = "smart"; # Keep spaces in commands, strip elsewhere
-      enable_audio_bell = false; # No annoying bell sound
-      confirm_os_window_close = 0; # 0 = Never ask before closing window
-      macos_option_as_alt = "both"; # Treat Option as Alt (like Alacritty's option_as_alt)
-
-      # --- Tab Bar ---
-      # tab_bar_edge = "bottom"; # top, bottom, hidden
-      # tab_bar_style = "powerline"; # fade, separator, powerline, hidden
-      # tab_powerline_style = "slanted"; # slanted, angled, round
-      shell_integration = "no-title"; # Let zsh set_term_title() control the title
-
-      # --- URL Handling ---
-      # open_url_modifiers is deprecated, use open_url_with and mouse bindings
-      open_url_with = "default"; # Use default browser
-
-      # --- Mouse ---
-      # mouse_hide_wait = 3.0; # Hide mouse after 3s of inactivity
-      # click_interval = 0.5; # Time for double/triple clicks
-
-      # --- Performance ---
-      # repaint_delay = 10;
-      # input_delay = 3;
-      sync_to_monitor = true; # Helps prevent tearing
-    };
-
-    # See: https://sw.kovidgoyal.net/kitty/actions/
-    # Use `kitty --debug-keyboard` to find key names
-    keybindings = {
-      # # --- Navigation ---
-      # "kitty_mod+left" = "previous_window";
-      # "kitty_mod+right" = "next_window";
-      # "kitty_mod+up" = "previous_tab";
-      # "kitty_mod+down" = "next_tab";
-      # "kitty_mod+shift+," = "move_tab_backward";
-      # "kitty_mod+shift+." = "move_tab_forward";
-
-      # # --- Window/Tab Management ---
-      "alt+t" = "new_tab_with_cwd";
-      "alt+shift+]" = "next_tab";
-      "alt+shift+[" = "previous_tab";
-
-      # "kitty_mod+t" = "new_tab"; # Default new tab
-      # "kitty_mod+w" = "close_tab"; # Close tab (default)
-      # "kitty_mod+enter" = "new_window"; # Default new window
-      # "kitty_mod+shift+enter" = "new_os_window"; # New OS window
-
-      # # --- Copy/Paste ---
-      # "ctrl+shift+c" = "copy_to_clipboard";
-      # "ctrl+shift+v" = "paste_from_clipboard";
-      # # "shift+insert"      = "paste_from_selection"; # Linux middle-click style paste
-
-      # # --- Font Size ---
-      # "kitty_mod+equal" = "increase_font_size";
-      # "kitty_mod+minus" = "decrease_font_size";
-      # "kitty_mod+backspace" = "restore_font_size";
-
-      # # --- Scrolling ---
-      # "kitty_mod+k" = "scroll_line_up";
-      # "kitty_mod+j" = "scroll_line_down";
-      # "kitty_mod+page_up" = "scroll_page_up";
-      # "kitty_mod+page_down" = "scroll_page_down";
-      # "kitty_mod+home" = "scroll_home";
-      # "kitty_mod+end" = "scroll_end";
-
-      # # --- Shell Interaction ---
-      # # Map Ctrl+Left/Right to move by word in many shells (sends Alt+B/F)
-      # "ctrl+left" = "send_text all \\x1b\\x62"; # Send Alt+B (backward-word)
-      # "ctrl+right" = "send_text all \\x1b\\x66"; # Send Alt+F (forward-word)
-
-      # # --- Misc ---
-      # "kitty_mod+shift+k" = "clear_terminal scrollback"; # Clear scrollback
-      # "kitty_mod+shift+f11" = "toggle_fullscreen";
-      # "kitty_mod+f1" = "show_scrollback"; # View scrollback in pager (less)
-      # "kitty_mod+," = "edit_config_file"; # Open kitty.conf for editing
-    };
-  };
+  # Kitty config moved to home/kitty.nix
+  # Kitty app installed via modules/terminals.nix for proper /Applications linking
 
   # Define user environment packages
   home.packages = with pkgs; [
@@ -256,7 +157,7 @@
     # clang-tools
 
     htop
-    alacritty
+    # alacritty & kitty installed via modules/terminals.nix for proper /Applications linking
     neovim
     ueberzugpp # image previews for yazi in terminals without native graphics
 
