@@ -165,7 +165,7 @@
       # --- Appearance ---
       background_opacity = "1.0"; # Slightly transparent (0.0 to 1.0)
       # macos_titlebar_color = "background"; # macOS specific: Blend title bar
-      hide_window_decorations = "titlebar-only"; # Example: Hide titlebar on macOS/Wayland if desired
+      # hide_window_decorations = "titlebar-only"; # Commented out to keep titlebar for dragging
       window_padding_width = 10; # Padding around window edges
       cursor_shape = "Block"; # Beam, Block, Underline
       cursor_blink_interval = 0; # Disable cursor blinking
@@ -182,7 +182,7 @@
       # tab_bar_edge = "bottom"; # top, bottom, hidden
       # tab_bar_style = "powerline"; # fade, separator, powerline, hidden
       # tab_powerline_style = "slanted"; # slanted, angled, round
-      shell_integration = "no-title";
+      shell_integration = "no-title"; # Let zsh set_term_title() control the title
 
       # --- URL Handling ---
       # open_url_modifiers is deprecated, use open_url_with and mouse bindings
