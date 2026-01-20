@@ -3,19 +3,49 @@
 # Layout ratios: [parent, current, preview] - no preview
 ratio = [0, 1, 0]
 show_hidden = true
-sort_by = "natural"
+sort_by = "extension"
+sort_reverse = true
 sort_dir_first = true
 
 [opener]
-# Single opener - always use helix script (no interactive prompt)
+# Text files -> helix (via zellij pane)
 edit = [
   { run = '$HOME/.config/zellij/scripts/yazi-hx-open.sh "$@"', block = true, for = "unix" },
+]
+# Non-text files -> system default (Preview.app, etc.)
+open = [
+  { run = 'open "$@"', for = "macos" },
 ]
 
 [open]
 rules = [
-  # Folders - use built-in folder handling
+  # Folders
   { name = "*/", use = "folder" },
-  # Everything else -> helix (single rule, no alternatives = no "Open with:" prompt)
+  
+  # Images -> system default
+  { mime = "image/*", use = "open" },
+  
+  # PDFs -> system default
+  { mime = "application/pdf", use = "open" },
+  
+  # Videos/Audio -> system default
+  { mime = "video/*", use = "open" },
+  { mime = "audio/*", use = "open" },
+  
+  # Archives -> system default
+  { mime = "application/zip", use = "open" },
+  { mime = "application/gzip", use = "open" },
+  { mime = "application/x-tar", use = "open" },
+  
+  # Text files -> helix
+  { mime = "text/*", use = "edit" },
+  { mime = "application/json", use = "edit" },
+  { mime = "application/javascript", use = "edit" },
+  { mime = "application/x-sh", use = "edit" },
+  { mime = "application/toml", use = "edit" },
+  { mime = "application/xml", use = "edit" },
+  { mime = "application/x-yaml", use = "edit" },
+  
+  # Fallback: unknown files -> helix (probably text)
   { name = "*", use = "edit" },
 ]
