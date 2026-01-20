@@ -3,7 +3,7 @@
 [manager]
 # Main background matching helix
 cwd = { fg = "#6699cc" }
-hovered = { fg = "#1d1d1d", bg = "#4a4a4a" }
+hovered = { fg = "#ffffff", bg = "#505050" }
 preview_hovered = { underline = true }
 
 # Tabs
