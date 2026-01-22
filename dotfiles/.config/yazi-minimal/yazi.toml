@@ -4,7 +4,7 @@
 ratio = [0, 1, 0]
 show_hidden = true
 sort_by = "extension"
-sort_reverse = true
+sort_reverse = false
 sort_dir_first = true
 
 [opener]
