@@ -6,9 +6,7 @@
 
 FILE_PATH="$1"
 
-if [ -z "$FILE_PATH" ]; then
-  exit 0
-fi
+if [ -z "$FILE_PATH" ]; then exit 0; fi
 
 # Get absolute path
 if command -v realpath &>/dev/null; then
@@ -17,16 +15,21 @@ fi
 
 # Check if running inside Zellij
 if [ -n "$ZELLIJ" ]; then
-  # Running inside Zellij - send to helix pane
+  # Escape path for Helix (escape backslashes and quotes)
   ESCAPED_PATH=$(printf '%s' "$FILE_PATH" | sed 's/\\/\\\\/g; s/"/\\"/g')
   
   zellij action focus-next-pane
+  
+  # Step 1: Send ESC (27) separately to ensure Normal Mode
   zellij action write 27
-  zellij action write-chars ":open \"$ESCAPED_PATH\""
-  zellij action write 13
+
+  # Step 2: Prepare command string ":open "path""
+  # We use 'tr -d' to remove newlines from od output which breaks zellij args
+  CMD_BYTES=$(printf ":open \"$ESCAPED_PATH\"" | od -An -t u1 | tr -d '\n')
+
+  # Send Command Bytes + Enter (13) in one go
+  zellij action write $CMD_BYTES 13
 else
   # Not in Zellij - just open helix directly with the file
   hx "$FILE_PATH"
 fi
-
-exit 0
