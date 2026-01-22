@@ -1,6 +1,6 @@
 # Minimal yazi theme - matching helix background (#1d1d1d)
 
-[manager]
+[mgr]
 # Main background matching helix
 cwd = { fg = "#6699cc" }
 hovered = { fg = "#ffffff", bg = "#505050" }
