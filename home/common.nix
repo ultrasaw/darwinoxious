@@ -60,6 +60,9 @@
     };
 
     initExtra = ''
+      # Pre-warm helix binary into RAM (reduces first-open delay)
+      (cat $(which hx) > /dev/null 2>&1 &) 2>/dev/null
+
       # --- Start: Custom Terminal Title ---
 
       export DISABLE_AUTO_TITLE="true"
