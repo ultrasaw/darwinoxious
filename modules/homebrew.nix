@@ -32,6 +32,11 @@
       upgrade = true;
       cleanup = "zap";
     };
+    taps = [
+      "homebrew/bundle"
+      "homebrew/core"
+      "homebrew/cask"
+    ];
     brews = import ./brews.nix {};
     casks = import ./casks.nix {};
   };
