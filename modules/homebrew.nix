@@ -24,4 +24,15 @@
     # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
     mutableTaps = true;
   };
+
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+      cleanup = "zap";
+    };
+    brews = import ./brews.nix {};
+    casks = import ./casks.nix {};
+  };
 }
