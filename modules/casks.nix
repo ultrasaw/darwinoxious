@@ -4,7 +4,6 @@ _:
   # Development Tools
   # "homebrew/cask/docker"
   "orbstack"
-  "claude"
   "cursor"
   "visual-studio-code"
   "ngrok"

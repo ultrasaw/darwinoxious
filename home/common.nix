@@ -201,7 +201,7 @@
     unzip
 
     unstablePkgs.gemini-cli
-    unstablePkgs.claude-code
+    unstablePkgs.opencode
 
     unstablePkgs.kubectl
     unstablePkgs.k9s
