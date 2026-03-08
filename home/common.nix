@@ -46,6 +46,7 @@
       y = "yazi";
       zc = "zellij --layout compact";
       zs = "zellij --layout split";
+      oc = "opencode";
     };
 
     history = {
