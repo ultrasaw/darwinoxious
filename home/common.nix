@@ -203,6 +203,7 @@
 
     unstablePkgs.gemini-cli
     unstablePkgs.opencode
+    unstablePkgs.ollama
 
     unstablePkgs.kubectl
     unstablePkgs.k9s
