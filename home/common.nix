@@ -28,6 +28,7 @@
       gc = "git commit";
       gp = "git push --set-upstream origin HEAD";
       gx = "git checkout";
+      wt = "worktrunk";
 
       # cat
       cat = "bat --style=numbers --color=always -Pp";
@@ -201,6 +202,7 @@
 
     unzip
 
+    unstablePkgs.worktrunk
     unstablePkgs.gemini-cli
     unstablePkgs.opencode
     unstablePkgs.ollama
