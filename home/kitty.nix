@@ -19,8 +19,8 @@
     settings = {
       # --- Window Size ---
       remember_window_size = false;
-      initial_window_width = "170c";
-      initial_window_height = "42c";
+      initial_window_width = "185c";
+      initial_window_height = "45c";
 
       # --- Appearance ---
       background_opacity = "1.0";
