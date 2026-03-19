@@ -217,6 +217,8 @@
     s3cmd
     aws-sam-cli
 
+    p4 # Perforce Helix Core command-line client and APIs
+
     (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
 
     sqlite
