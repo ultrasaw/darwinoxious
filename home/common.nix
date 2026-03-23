@@ -26,6 +26,7 @@
       # Git Aliases
       ga = "git add";
       gc = "git commit";
+      gg = "git pull";
       gp = "git push --set-upstream origin HEAD";
       gx = "git checkout";
 
