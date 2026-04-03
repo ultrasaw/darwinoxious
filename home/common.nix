@@ -61,7 +61,7 @@
       theme = "clean"; # agnoster, amuse, arrow, clean
     };
 
-    initExtra = ''
+    initContent = ''
       # Pre-warm helix binary into RAM (reduces first-open delay)
       (cat $(which hx) > /dev/null 2>&1 &) 2>/dev/null
 
@@ -142,7 +142,7 @@
 
   programs.git = {
     enable = true;
-    aliases = {
+    settings.alias = {
       pu = "push";
       co = "checkout";
       cm = "commit";
@@ -202,6 +202,7 @@
 
     unzip
 
+    unstablePkgs.gh
     unstablePkgs.worktrunk
     unstablePkgs.gemini-cli
     unstablePkgs.opencode
@@ -216,7 +217,6 @@
 
     awscli2
     s3cmd
-    aws-sam-cli
 
     p4 # Perforce Helix Core command-line client and APIs
 
