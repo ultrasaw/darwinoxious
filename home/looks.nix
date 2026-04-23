@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  projectsDir = "${config.home.homeDirectory}/Documents/_projects";
+in
 {
   home = {
     file = {
@@ -29,6 +32,11 @@
         text       = builtins.readFile ../dotfiles/.config/zellij/scripts/toggle-preview.sh;
         executable = true;
       };
+
+      ".config/opencode/opencode.json".text = builtins.replaceStrings
+        [ "@PROJECTS_DIR@" ]
+        [ projectsDir ]
+        (builtins.readFile ../dotfiles/.config/opencode/opencode.json);
     };
   };
 }
