@@ -160,6 +160,7 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = false;
+    package = unstablePkgs.zellij;
   };
 
   # a better 'cd'
