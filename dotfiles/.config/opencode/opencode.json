@@ -4,7 +4,9 @@
     "external_directory": {
       "*": "ask",
       "@PROJECTS_DIR@/**": "allow",
-      "/tmp/**": "allow"
+      "@HOME@/go/**": "allow",
+      "/tmp/**": "allow",
+      "/private/**": "allow"
     }
   },
   "experimental": {

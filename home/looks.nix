@@ -1,7 +1,8 @@
 { pkgs, config, ... }:
 
 let
-  projectsDir = "${config.home.homeDirectory}/Documents/_projects";
+  homeDir = config.home.homeDirectory;
+  projectsDir = "${homeDir}/Documents/_projects";
 in
 {
   home = {
@@ -33,9 +34,14 @@ in
         executable = true;
       };
 
+      # Manual install on non-nix machines:
+      #   sed -e "s|@PROJECTS_DIR@|$HOME/Documents/_projects|g" \
+      #       -e "s|@HOME@|$HOME|g" \
+      #       dotfiles/.config/opencode/opencode.json \
+      #       > ~/.config/opencode/opencode.json
       ".config/opencode/opencode.json".text = builtins.replaceStrings
-        [ "@PROJECTS_DIR@" ]
-        [ projectsDir ]
+        [ "@PROJECTS_DIR@" "@HOME@" ]
+        [ projectsDir   homeDir ]
         (builtins.readFile ../dotfiles/.config/opencode/opencode.json);
     };
   };
