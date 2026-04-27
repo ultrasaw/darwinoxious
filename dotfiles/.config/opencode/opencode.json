@@ -5,8 +5,11 @@
       "*": "ask",
       "@PROJECTS_DIR@/**": "allow",
       "@HOME@/go/**": "allow",
-      "/tmp/**": "allow",
-      "/private/**": "allow"
+      "/tmp/**": "allow"
+    },
+    "bash": {
+      "*": "allow",
+      "sudo *": "ask"
     }
   },
   "experimental": {
