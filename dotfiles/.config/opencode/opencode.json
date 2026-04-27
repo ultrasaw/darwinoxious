@@ -9,7 +9,9 @@
     },
     "bash": {
       "*": "allow",
-      "sudo *": "ask"
+      "sudo *": "ask",
+      "gcloud *": "ask",
+      "firebase *": "ask"
     }
   },
   "experimental": {
