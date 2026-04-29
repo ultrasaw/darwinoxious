@@ -31,7 +31,7 @@
       gx = "git checkout";
 
       # cat
-      cat = "bat --style=numbers --color=always -Pp";
+      bat = "bat --style=numbers --color=always -Pp";
 
       # fzf
       fp = "fzf --preview 'bat --style=numbers --color=always {}'"; # file preview
