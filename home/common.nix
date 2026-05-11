@@ -31,7 +31,7 @@
       gx = "git checkout";
 
       # cat
-      bat = "bat --style=numbers --color=always -Pp";
+      bat = "bat --style=numbers --color=always -P";
 
       # Kubernetes
       k = "kubectl";
