@@ -22,13 +22,13 @@
     # Optional: Enable fully-declarative tap management
     #
     # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-    mutableTaps = true;
+    mutableTaps = false;
   };
 
   homebrew = {
     enable = true;
     onActivation = {
-      autoUpdate = true;
+      autoUpdate = false;
       upgrade = true;
       cleanup = "zap";
     };

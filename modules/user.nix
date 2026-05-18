@@ -11,14 +11,6 @@ in
     shell = pkgs.zsh;
   };
 
-  homebrew = {
-    # This is a module from nix-darwin
-    # Homebrew is *installed* via the flake input nix-homebrew
-    enable = true;
-    casks = pkgs.callPackage ./casks.nix {};
-    brews = pkgs.callPackage ./brews.nix {};
-  };
-
   home-manager = {
     extraSpecialArgs = {
       inherit inputs unstablePkgs;

@@ -14,6 +14,11 @@
     };
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
+      # Use newer Homebrew code so casks like flameshot with newer depends_on syntax parse correctly.
+      inputs.brew-src = {
+        url = "github:Homebrew/brew";
+        flake = false;
+      };
     };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
