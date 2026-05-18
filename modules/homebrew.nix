@@ -19,10 +19,8 @@
       "homebrew/homebrew-bundle" = homebrew-bundle;
     };
 
-    # Optional: Enable fully-declarative tap management
-    #
-    # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-    mutableTaps = false;
+    # Keep the existing /opt/homebrew/Library/Taps directory; autoUpdate=false avoids mutating pinned taps.
+    mutableTaps = true;
   };
 
   homebrew = {
