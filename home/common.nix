@@ -139,8 +139,18 @@
       # Source kubectl completion script
       source <(kubectl completion zsh)
 
-      # kubeconfig from multiple .yaml files
-      export KUBECONFIG="$HOME/.kube/cl-k8s-gitlab-runner-dev-01.yaml:$HOME/.kube/cl-k8s-workload-prod-01.yaml:$HOME/.kube/devcluster01-test.yaml:$HOME/.kube/devcluster01.yaml:$HOME/.kube/devcluster02.yaml:$HOME/.kube/internalservice-ng.yaml:$HOME/.kube/local.yaml:$HOME/.kube/prodcluster01-rke2.yaml:$HOME/.kube/workloaddev01-test.yaml:$HOME/.kube/workloaddev01.yaml"
+      # kubeconfig from existing .yaml files. Newest files are first, so the
+      # last refreshed cluster becomes the default without hard-coding names.
+      kubeconfig_files=(
+        "$HOME"/.kube/*.yaml(Nom)
+      )
+      typeset -U kubeconfig_files
+
+      if (( ''${#kubeconfig_files} )); then
+        export KUBECONFIG="''${(j/:/)kubeconfig_files}"
+      else
+        unset KUBECONFIG
+      fi
     '';
   };
 
