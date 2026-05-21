@@ -223,7 +223,6 @@
 
     unstablePkgs.gh
     unstablePkgs.worktrunk
-    unstablePkgs.gemini-cli
     unstablePkgs.opencode
     unstablePkgs.codex
     unstablePkgs.ollama
