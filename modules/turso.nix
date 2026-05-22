@@ -11,13 +11,13 @@
 let
   turso-cli = unstablePkgs.buildGoModule rec {
     pname = "turso-cli";
-    version = "1.0.17";
+    version = "1.0.24";
 
     src = unstablePkgs.fetchFromGitHub {
       owner = "tursodatabase";
       repo = "turso-cli";
       rev = "v${version}";
-      hash = "sha256-3u5yc49v0vwNKaI5GcE+rDEoscbQqpnaN11Bax0SEtE=";
+      hash = "sha256-3fKEFK4zCeKEYfiBJ7so5pZ3ZQC2td80XKWN3GKFWLA=";
     };
 
     vendorHash = "sha256-Cb4/KA9jfI/pNHbJqLWtm9oEXfMHGBS46J9o3lL4/Tk=";
