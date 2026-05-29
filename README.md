@@ -89,8 +89,10 @@ not just the Command Line Tools. Use the `xcodes` CLI (declared in `modules/brew
 xcodes install --latest
 # or pin a specific version, e.g.: xcodes install 16.2
 
-# point the toolchain at the new Xcode and accept the license
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+# select the most recently installed version
+xcodes select "$(xcodes installed | tail -n1 | awk '{print $1}')"
+
+# accept the license
 sudo xcodebuild -license accept
 ```
 
