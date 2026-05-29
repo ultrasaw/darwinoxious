@@ -77,3 +77,22 @@ sudo git config --global user.email "email@example.com"
 sudo git config --global user.signingkey KEY_ID
 sudo git config --global commit.gpgsign true
 ```
+
+### (optional) full Xcode
+Some tools (e.g. Unreal Engine compiling Metal shaders) need the full `Xcode.app`,
+not just the Command Line Tools. Use the `xcodes` CLI (declared in `modules/brews.nix`).
+
+```bash
+# xcodes is installed via brews.nix on `darwin-rebuild switch`
+
+# download + install the latest Xcode (prompts for your Apple ID + sudo)
+xcodes install --latest
+# or pin a specific version, e.g.: xcodes install 16.2
+
+# point the toolchain at the new Xcode and accept the license
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -license accept
+```
+
+Then launch Xcode once so it finishes installing its components.
+A free Apple developer account is enough; the download is ~10 GB and resumable.
