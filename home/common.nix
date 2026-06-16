@@ -6,7 +6,10 @@
 
   programs = {
     home-manager.enable = true;
-    yazi.enable = true; # terminal file manager
+    yazi = {
+      enable = true; # terminal file manager
+      shellWrapperName = "yy";
+    };
     btop.enable = true; # TUI for resource usage monitoring
     bat.enable = true; # cat with syntax highlighting
   };

@@ -25,7 +25,7 @@ default = [
 [open]
 rules = [
   # Folders
-  { name = "*/", use = "folder" },
+  { mime = "inode/directory", use = "folder" },
 
   # Images -> system default (Preview.app)
   { mime = "image/*", use = "default" },
@@ -50,5 +50,5 @@ rules = [
   { mime = "application/*", use = "default" },
 
   # Fallback: unknown files -> helix (probably text)
-  { name = "*", use = "helix" },
+  { url = "*", use = "helix" },
 ]
