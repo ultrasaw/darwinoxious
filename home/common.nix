@@ -233,6 +233,7 @@
     unstablePkgs.minikube
     unstablePkgs.kind
     unstablePkgs.fluxcd
+    unstablePkgs.sops
 
     awscli2
     s3cmd
