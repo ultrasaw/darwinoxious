@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   homeDir = config.home.homeDirectory;
@@ -43,6 +43,31 @@ in
         [ "@PROJECTS_DIR@" "@HOME@" ]
         [ projectsDir   homeDir ]
         (builtins.readFile ../dotfiles/.config/opencode/opencode.json);
+
+      ".config/opencode/tui.json".text = builtins.toJSON {
+        "$schema" = "https://opencode.ai/tui.json";
+        diff_style = "stacked";
+      } + "\n";
     };
+
+    activation.opencodeThinkingMode = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      kv_file="${config.xdg.stateHome}/opencode/kv.json"
+      kv_dir="$(dirname "$kv_file")"
+
+      if [ -n "$DRY_RUN_CMD" ]; then
+        echo "Would set OpenCode thinking_mode in $kv_file"
+      else
+        mkdir -p "$kv_dir"
+        tmp_file="$(mktemp "$kv_dir/kv.json.tmp.XXXXXX")"
+
+        if [ -s "$kv_file" ] && ${pkgs.jq}/bin/jq empty "$kv_file" >/dev/null 2>&1; then
+          ${pkgs.jq}/bin/jq '.thinking_mode = "show"' "$kv_file" > "$tmp_file"
+        else
+          ${pkgs.jq}/bin/jq -n '{ thinking_mode: "show" }' > "$tmp_file"
+        fi
+
+        mv "$tmp_file" "$kv_file"
+      fi
+    '';
   };
 }
