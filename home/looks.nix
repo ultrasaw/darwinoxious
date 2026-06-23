@@ -43,11 +43,6 @@ in
         [ "@PROJECTS_DIR@" "@HOME@" ]
         [ projectsDir   homeDir ]
         (builtins.readFile ../dotfiles/.config/opencode/opencode.json);
-
-      ".config/opencode/tui.json".text = builtins.toJSON {
-        "$schema" = "https://opencode.ai/tui.json";
-        diff_style = "stacked";
-      } + "\n";
     };
 
     activation.opencodeThinkingMode = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
