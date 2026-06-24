@@ -44,18 +44,18 @@ let
         )
       )
 
-      (defsrc caps j k l ;)
+      (defsrc caps d e y u i o j k l ;)
 
       (defalias
         sym (layer-while-held symbols)
       )
 
       (deflayer base
-        @sym j k l ;
+        @sym d e y u i o j k l ;
       )
 
       (deflayer symbols
-        _ - = [ ]
+        _ bspc ret 7 8 9 0 [ ] - =
       )
     '';
     checkPhase = ''

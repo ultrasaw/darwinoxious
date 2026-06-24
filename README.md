@@ -72,8 +72,12 @@ launchctl print system/org.nixos.kanata
 tail -f /var/log/kanata.out.log /var/log/kanata.err.log
 ```
 
-The current mapping makes Caps Lock a hold-only layer: hold Caps and press
-`j k l ;` to output `- = [ ]`.
+The current mapping makes Caps Lock a hold-only layer:
+
+- `d` outputs Backspace
+- `e` outputs Enter
+- `y u i o` output `7 8 9 0`
+- `j k l ;` output `[ ] - =`
 
 ### set up SSH / GPG keys
 SSH
