@@ -55,7 +55,7 @@ let
       )
 
       (deflayer symbols
-        _ bspc ret 7 8 9 0 [ ] - =
+        _ A-bspc ret 7 8 9 0 [ ] - =
       )
     '';
     checkPhase = ''

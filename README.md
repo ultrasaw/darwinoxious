@@ -74,7 +74,7 @@ tail -f /var/log/kanata.out.log /var/log/kanata.err.log
 
 The current mapping makes Caps Lock a hold-only layer:
 
-- `d` outputs Backspace
+- `d` deletes the previous word with Option+Backspace
 - `e` outputs Enter
 - `y u i o` output `7 8 9 0`
 - `j k l ;` output `[ ] - =`
