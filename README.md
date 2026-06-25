@@ -55,21 +55,20 @@ Then approve these settings:
   enable `org.pqrs.Karabiner-DriverKit-VirtualHIDDevice`.
 - `System Settings > General > Login Items`: allow the Karabiner/Nix-managed
   background item if macOS asks.
-- `System Settings > Privacy & Security > Input Monitoring`: enable
-  `/Applications/Kanata.app`.
+- `System Settings > Privacy & Security > Input Monitoring`: add and enable
+  kanata:
+  - Click `+`.
+  - Press `Cmd+Shift+G` in the file picker.
+  - Paste `/Library/Application Support/org.nixos/kanata/bin/`.
+  - Select `kanata` and click `Open`.
 
-Restart kanata after changing permissions:
+Restart the services after changing permissions:
 
 ```bash
+sudo launchctl bootout system /Library/LaunchDaemons/org.nixos.kanata.plist
+sudo launchctl kickstart -k system/org.nixos.karabiner-vhiddaemon
+sudo launchctl bootstrap system /Library/LaunchDaemons/org.nixos.kanata.plist
 sudo launchctl kickstart -k system/org.nixos.kanata
-```
-
-Useful checks:
-
-```bash
-systemextensionsctl list
-launchctl print system/org.nixos.kanata
-tail -f /var/log/kanata.out.log /var/log/kanata.err.log
 ```
 
 The current mapping makes Caps Lock a hold-only layer:

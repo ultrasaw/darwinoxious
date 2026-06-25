@@ -3,35 +3,9 @@
 let
   kanata = pkgs.kanata;
   karabinerDriver = kanata.passthru.darwinDriver;
+  karabinerSupportDir = "/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice";
   karabinerManagerApp = "/Applications/.Karabiner-VirtualHIDDevice-Manager.app";
-  kanataApp = "/Applications/Kanata.app";
-
-  kanataInfoPlist = pkgs.writeText "Kanata-Info.plist" ''
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>CFBundleExecutable</key>
-      <string>kanata</string>
-      <key>CFBundleIdentifier</key>
-      <string>org.nixos.kanata</string>
-      <key>CFBundleInfoDictionaryVersion</key>
-      <string>6.0</string>
-      <key>CFBundleName</key>
-      <string>Kanata</string>
-      <key>CFBundlePackageType</key>
-      <string>APPL</string>
-      <key>CFBundleShortVersionString</key>
-      <string>${kanata.version}</string>
-      <key>CFBundleVersion</key>
-      <string>${kanata.version}</string>
-      <key>LSMinimumSystemVersion</key>
-      <string>13.0</string>
-      <key>LSUIElement</key>
-      <true/>
-    </dict>
-    </plist>
-  '';
+  kanataBin = "/Library/Application Support/org.nixos/kanata/bin/kanata";
 
   kanataConfig = pkgs.writeTextFile {
     name = "kanata-caps-symbols.kbd";
@@ -39,7 +13,6 @@ let
       (defcfg
         process-unmapped-keys yes
         macos-dev-names-include (
-          "Apple Internal Keyboard / Trackpad"
           "NuPhy Gem80"
         )
       )
@@ -76,19 +49,26 @@ in
       ${lib.escapeShellArg "${karabinerDriver}/Applications/.Karabiner-VirtualHIDDevice-Manager.app"} \
       ${lib.escapeShellArg karabinerManagerApp}
 
-    echo "setting up Kanata app wrapper..." >&2
-    rm -rf ${lib.escapeShellArg kanataApp}
-    mkdir -p ${lib.escapeShellArg "${kanataApp}/Contents/MacOS"}
-    cp ${lib.escapeShellArg "${lib.getExe kanata}"} ${lib.escapeShellArg "${kanataApp}/Contents/MacOS/kanata"}
-    chmod 755 ${lib.escapeShellArg "${kanataApp}/Contents/MacOS/kanata"}
-    cp ${lib.escapeShellArg kanataInfoPlist} ${lib.escapeShellArg "${kanataApp}/Contents/Info.plist"}
-    /usr/bin/codesign --force --deep --sign - ${lib.escapeShellArg kanataApp}
+    echo "setting up Karabiner VirtualHIDDevice support files..." >&2
+    rm -rf ${lib.escapeShellArg karabinerSupportDir}
+    mkdir -p ${lib.escapeShellArg (dirOf karabinerSupportDir)}
+    /usr/bin/ditto \
+      ${lib.escapeShellArg "${karabinerDriver}/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice"} \
+      ${lib.escapeShellArg karabinerSupportDir}
+
+    echo "removing obsolete Kanata app wrapper..." >&2
+    rm -rf /Applications/Kanata.app
+
+    echo "setting up stable Kanata executable..." >&2
+    mkdir -p ${lib.escapeShellArg (dirOf kanataBin)}
+    cp -f ${lib.escapeShellArg (lib.getExe kanata)} ${lib.escapeShellArg kanataBin}
+    chmod 755 ${lib.escapeShellArg kanataBin}
   '';
 
   launchd.daemons.karabiner-vhiddaemon = {
     serviceConfig = {
       ProgramArguments = [
-        "${karabinerDriver}/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon"
+        "${karabinerSupportDir}/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon"
       ];
       RunAtLoad = true;
       KeepAlive = true;
@@ -112,7 +92,7 @@ in
   launchd.daemons.kanata = {
     serviceConfig = {
       ProgramArguments = [
-        "${kanataApp}/Contents/MacOS/kanata"
+        kanataBin
         "--cfg"
         "${kanataConfig}"
         "--no-wait"
