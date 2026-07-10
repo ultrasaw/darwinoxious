@@ -79,13 +79,6 @@
 
       # --- End: Custom Terminal Title ---
 
-      # https://github.com/alacritty/alacritty/issues/1408#issuecomment-467970836
-      bindkey "^[[1;3C" forward-word
-      bindkey "^[[1;3D" backward-word
-      
-      bindkey "^[[1;9C" forward-word
-      bindkey "^[[1;9D" backward-word
-
       # ripgrep + fzf
       ff() {
         if [ "$#" -eq 0 ]; then

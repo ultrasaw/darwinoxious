@@ -84,7 +84,6 @@
           ./modules/user.nix
           ./modules/terminals.nix
           ./modules/flameshot.nix
-          ./modules/kanata.nix
           ./modules/python.nix
           ./modules/go.nix
           ./modules/rust.nix

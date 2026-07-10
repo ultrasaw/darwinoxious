@@ -39,45 +39,6 @@ Allow 'malware'
 xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
 ```
 
-### Kanata keyboard remapping
-`modules/kanata.nix` installs kanata and the Karabiner DriverKit virtual HID
-driver. After switching the system, macOS permissions still need to be approved
-manually:
-
-```bash
-cd /private/etc/nix-darwin
-sudo darwin-rebuild switch --flake .#book-of-doom
-```
-
-Then approve these settings:
-
-- `System Settings > General > Login Items & Extensions > Driver Extensions`:
-  enable `org.pqrs.Karabiner-DriverKit-VirtualHIDDevice`.
-- `System Settings > General > Login Items`: allow the Karabiner/Nix-managed
-  background item if macOS asks.
-- `System Settings > Privacy & Security > Input Monitoring`: add and enable
-  kanata:
-  - Click `+`.
-  - Press `Cmd+Shift+G` in the file picker.
-  - Paste `/Library/Application Support/org.nixos/kanata/bin/`.
-  - Select `kanata` and click `Open`.
-
-Restart the services after changing permissions:
-
-```bash
-sudo launchctl bootout system /Library/LaunchDaemons/org.nixos.kanata.plist
-sudo launchctl kickstart -k system/org.nixos.karabiner-vhiddaemon
-sudo launchctl bootstrap system /Library/LaunchDaemons/org.nixos.kanata.plist
-sudo launchctl kickstart -k system/org.nixos.kanata
-```
-
-The current mapping makes Caps Lock a hold-only layer:
-
-- `d` deletes the previous word with Option+Backspace
-- `e` outputs Enter
-- `y u i o` output `7 8 9 0`
-- `j k l ;` output `[ ] - =`
-
 ### set up SSH / GPG keys
 SSH
 ```bash
