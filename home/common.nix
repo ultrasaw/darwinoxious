@@ -1,6 +1,14 @@
 { config, pkgs, lib, unstablePkgs, ... }:
 
-{
+let
+  worktrunk = unstablePkgs.worktrunk.overrideAttrs (oldAttrs: {
+    # These process-table tests cannot see processes inside the macOS Nix sandbox.
+    checkFlags = (oldAttrs.checkFlags or [ ]) ++ [
+      "--skip=shell::utils::tests::test_process_name_and_ppid_self"
+      "--skip=shell::utils::tests::test_probe_reports_invoked_name_for_sh"
+    ];
+  });
+in {
 
   home.stateVersion = "24.11";
 
@@ -218,7 +226,7 @@
     unzip
 
     unstablePkgs.gh
-    unstablePkgs.worktrunk
+    worktrunk
     unstablePkgs.opencode
     unstablePkgs.codex
     unstablePkgs.ollama
@@ -226,7 +234,6 @@
     unstablePkgs.kubectl
     unstablePkgs.k9s
     unstablePkgs.kubernetes-helm
-    unstablePkgs.minikube
     unstablePkgs.kind
     unstablePkgs.fluxcd
     unstablePkgs.sops
