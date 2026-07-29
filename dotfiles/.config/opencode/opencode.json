@@ -5,7 +5,10 @@
       "*": "ask",
       "@PROJECTS_DIR@/**": "allow",
       "@HOME@/go/**": "allow",
-      "/tmp/**": "allow"
+      "/tmp/**": "allow",
+      "/Applications/**": "allow",
+      "/var/**": "allow",
+      "/private/var/**": "allow"
     },
     "bash": {
       "*": "allow",
