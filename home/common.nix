@@ -8,6 +8,9 @@ let
       "--skip=shell::utils::tests::test_probe_reports_invoked_name_for_sh"
     ];
   });
+  chromeWrapper = name: pkgs.writeShellScriptBin name ''
+    exec "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" "$@"
+  '';
 in {
 
   home.stateVersion = "24.11";
@@ -230,6 +233,9 @@ in {
     unstablePkgs.opencode
     unstablePkgs.codex
     unstablePkgs.ollama
+
+    (chromeWrapper "google-chrome")
+    (chromeWrapper "google-chrome-stable")
 
     unstablePkgs.kubectl
     unstablePkgs.k9s
