@@ -243,6 +243,7 @@ in {
     unstablePkgs.kind
     unstablePkgs.fluxcd
     unstablePkgs.sops
+    unstablePkgs.hcloud
 
     awscli2
     s3cmd
