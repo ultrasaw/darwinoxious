@@ -82,6 +82,7 @@
           nix-homebrew.darwinModules.nix-homebrew
           ./modules/homebrew.nix
           ./modules/user.nix
+          ./modules/remote-access.nix
           ./modules/terminals.nix
           ./modules/flameshot.nix
           ./modules/python.nix

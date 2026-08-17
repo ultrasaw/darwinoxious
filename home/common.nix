@@ -17,6 +17,26 @@ in {
 
   programs = {
     home-manager.enable = true;
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      # OrbStack requires this global include to precede all Host blocks.
+      includes = [ "~/.orbstack/ssh/config" ];
+      settings = {
+        "github.com" = {
+          HostName = "github.com";
+          User = "git";
+          IdentityFile = "~/.ssh/gh_key";
+        };
+        tower = {
+          HostName = "nixos";
+          User = "gio";
+          IdentityFile = "~/.ssh/nixos_tower";
+          IdentitiesOnly = true;
+          ProxyCommand = "${pkgs.tailscale}/bin/tailscale nc %h %p";
+        };
+      };
+    };
     yazi = {
       enable = true; # terminal file manager
       shellWrapperName = "yy";
@@ -24,6 +44,22 @@ in {
     btop.enable = true; # TUI for resource usage monitoring
     bat.enable = true; # cat with syntax highlighting
   };
+
+  # The existing OrbStack and GitHub entries are declared above.
+  home.file.".ssh/config".force = true;
+
+  home.activation.createNixosTowerKeyPlaceholder = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ssh_dir="$HOME/.ssh"
+    private_key="$ssh_dir/nixos_tower"
+
+    if [[ ! -d "$ssh_dir" ]]; then
+      run install -d -m 0700 "$ssh_dir"
+    fi
+
+    if [[ ! -e "$private_key" ]]; then
+      run install -m 0600 /dev/null "$private_key"
+    fi
+  '';
 
   programs.zsh = {
     enable = true;
