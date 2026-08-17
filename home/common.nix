@@ -33,7 +33,7 @@ in {
           User = "gio";
           IdentityFile = "~/.ssh/nixos_tower";
           IdentitiesOnly = true;
-          ProxyCommand = "${pkgs.tailscale}/bin/tailscale nc %h %p";
+          ProxyCommand = "${unstablePkgs.tailscale}/bin/tailscale nc %h %p";
         };
       };
     };
@@ -95,6 +95,7 @@ in {
       zc = "zellij --layout compact";
       zs = "zellij --layout split";
       oc = "opencode";
+      ocw = "opencode attach https://nixos.tail10b7c3.ts.net";
     };
 
     history = {
