@@ -45,23 +45,35 @@ in
         (builtins.readFile ../dotfiles/.config/opencode/opencode.json);
     };
 
-    activation.opencodeThinkingMode = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      kv_file="${config.xdg.stateHome}/opencode/kv.json"
-      kv_dir="$(dirname "$kv_file")"
+    # V2 owns a writable cli.json. Merge our preferences without replacing
+    # unrelated settings saved by the TUI or symlinking it into the Nix store.
+    activation.opencodeCliSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      cli_file="${config.xdg.configHome}/opencode/cli.json"
+      cli_dir="$(dirname "$cli_file")"
 
       if [ -n "$DRY_RUN_CMD" ]; then
-        echo "Would set OpenCode thinking_mode in $kv_file"
+        echo "Would merge OpenCode CLI settings into $cli_file"
       else
-        mkdir -p "$kv_dir"
-        tmp_file="$(mktemp "$kv_dir/kv.json.tmp.XXXXXX")"
+        mkdir -p "$cli_dir"
+        tmp_file="$(mktemp "$cli_dir/cli.json.tmp.XXXXXX")"
 
-        if [ -s "$kv_file" ] && ${pkgs.jq}/bin/jq empty "$kv_file" >/dev/null 2>&1; then
-          ${pkgs.jq}/bin/jq '.thinking_mode = "show"' "$kv_file" > "$tmp_file"
+        if [ -e "$cli_file" ]; then
+          if ! ${pkgs.jq}/bin/jq -e -s \
+            'if (.[0] | type) == "object" then .[0] * .[1] else error("cli.json must be an object") end' \
+            "$cli_file" ${../dotfiles/.config/opencode/cli.json} > "$tmp_file"; then
+            rm -f "$tmp_file"
+            echo "Refusing to overwrite invalid OpenCode CLI settings: $cli_file" >&2
+            exit 1
+          fi
+          if [ ! -e "$cli_file.before-nix-v2" ]; then
+            cp -p "$cli_file" "$cli_file.before-nix-v2"
+          fi
         else
-          ${pkgs.jq}/bin/jq -n '{ thinking_mode: "show" }' > "$tmp_file"
+          ${pkgs.jq}/bin/jq . ${../dotfiles/.config/opencode/cli.json} > "$tmp_file"
         fi
 
-        mv "$tmp_file" "$kv_file"
+        chmod 0600 "$tmp_file"
+        mv "$tmp_file" "$cli_file"
       fi
     '';
   };

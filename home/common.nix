@@ -207,7 +207,7 @@ in {
       zc = "zellij --layout compact";
       zs = "zellij --layout split";
       oc = "opencode";
-      ocw = "opencode attach https://nixos.tail10b7c3.ts.net";
+      ocw = "opencode --server https://nixos.tail10b7c3.ts.net";
     };
 
     history = {
