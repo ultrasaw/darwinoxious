@@ -12,5 +12,8 @@
     { "action": "shell", "resource": "sudo *", "effect": "ask" },
     { "action": "shell", "resource": "gcloud *", "effect": "ask" },
     { "action": "shell", "resource": "firebase *", "effect": "ask" }
-  ]
+  ],
+  "experimental": {
+    "todo": true
+  }
 }
