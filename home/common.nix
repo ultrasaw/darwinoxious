@@ -123,6 +123,80 @@ let
   chromeWrapper = name: pkgs.writeShellScriptBin name ''
     exec "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" "$@"
   '';
+  ocw = pkgs.writeShellScriptBin "ocw" ''
+    set -euo pipefail
+    server="https://nixos.tail10b7c3.ts.net"
+
+    # The foreground system service generates its own password on every start.
+    # Fetch only this invocation's credential over authenticated SSH; never put
+    # it in the Nix store, command arguments, shell history, or a local file.
+    if ! password=$(/usr/bin/ssh -o BatchMode=yes -o ConnectTimeout=10 tower 'python3 -' <<'PY'
+    import re
+    import subprocess
+    import sys
+
+    invocation = subprocess.check_output(
+        ["systemctl", "show", "opencode-web.service", "--property=InvocationID", "--value"],
+        text=True,
+    ).strip()
+    if not invocation:
+        sys.exit("ocw: remote OpenCode service is not running")
+    result = subprocess.run(
+        ["journalctl", "_SYSTEMD_INVOCATION_ID=" + invocation,
+         "--grep=^server password ", "-n", "1", "--no-pager", "-o", "cat", "--quiet"],
+        capture_output=True, text=True, check=True,
+    )
+    match = re.search(r"^server password (.+)$", result.stdout, re.MULTILINE)
+    if not match:
+        sys.exit("ocw: cannot retrieve the active remote OpenCode credential")
+    print(match.group(1))
+    PY
+    ); then
+      echo "ocw: remote authentication lookup failed" >&2
+      exit 1
+    fi
+    if [[ -z "$password" ]]; then
+      echo "ocw: remote OpenCode returned an empty credential" >&2
+      exit 1
+    fi
+    export OPENCODE_PASSWORD="$password"
+    unset password
+
+    if [[ "''${1:-}" == --check ]]; then
+      exec ${unstablePkgs.opencode}/bin/opencode api --server "$server" get /api/info
+    fi
+
+    directory=""
+    case "''${1:-}" in
+      --dir|--directory)
+        if (( $# < 2 )) || [[ -z "$2" ]]; then
+          echo "Usage: ocw [--dir /remote/path] [opencode flags]" >&2
+          exit 2
+        fi
+        directory="$2"
+        shift 2 ;;
+      --dir=*|--directory=*) directory="''${1#*=}"; shift ;;
+      /*) directory="$1"; shift ;;
+    esac
+    if [[ -n "$directory" ]]; then
+      if [[ "$directory" != /* ]]; then
+        echo "ocw: use an absolute remote directory" >&2
+        exit 2
+      fi
+      for arg in "$@"; do
+        case "$arg" in
+          --session|--session=*|-s|-s?*|--continue|-c)
+            echo "ocw: --dir creates a session; omit it when resuming a session" >&2
+            exit 2 ;;
+        esac
+      done
+      body=$(${pkgs.jq}/bin/jq -cn --arg directory "$directory" '{location: {directory: $directory}}')
+      session=$(${unstablePkgs.opencode}/bin/opencode api --server "$server" post /api/session --data "$body" \
+        | ${pkgs.jq}/bin/jq -er '.data.id')
+      exec ${unstablePkgs.opencode}/bin/opencode --server "$server" --session "$session" "$@"
+    fi
+    exec ${unstablePkgs.opencode}/bin/opencode --server "$server" "$@"
+  '';
 in {
 
   home.stateVersion = "24.11";
@@ -207,7 +281,7 @@ in {
       zc = "zellij --layout compact";
       zs = "zellij --layout split";
       oc = "opencode";
-      ocw = "opencode --server https://nixos.tail10b7c3.ts.net";
+      ocw = "${ocw}/bin/ocw";
     };
 
     history = {
@@ -380,6 +454,7 @@ in {
     gh
     worktrunk
     unstablePkgs.opencode
+    ocw
     unstablePkgs.codex
     unstablePkgs.ollama
 
