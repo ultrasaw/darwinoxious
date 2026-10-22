@@ -88,7 +88,6 @@
           ./modules/python.nix
           ./modules/go.nix
           ./modules/rust.nix
-          ./modules/turso.nix
         ];
       };
     };
