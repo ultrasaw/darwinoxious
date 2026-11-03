@@ -4,7 +4,6 @@ _:
   # Development Tools
   # "homebrew/cask/docker"
   "orbstack"
-  "cursor"
   "codex-app"
   "visual-studio-code"
   "ngrok"
