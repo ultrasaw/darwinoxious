@@ -11,5 +11,6 @@ in
   environment.systemPackages = with pkgs; [
     pythonEnv
     pyright
+    ty
   ];
 }
